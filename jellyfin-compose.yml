@@ -1,0 +1,21 @@
+---
+version: "2.1"
+services:
+  jellyfin:
+    image: ghcr.io/linuxserver/jellyfin
+    container_name: jellyfin
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Chicago/America
+    volumes:
+      - /path/to/library:/media/usb/Media/
+      - /path/to/tvseries:/media/usb/Media/TV
+      - /path/to/movies:/media/usb/Media/Movies
+      - /opt/vc/lib:/opt/vc/lib
+    ports:
+      - 8096:8096
+      - 8920:8920 #optional
+      - 7359:7359/udp
+      - 1900:1900/udp
+    restart: unless-stopped
